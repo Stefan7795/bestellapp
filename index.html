@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BestellApp</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="main-header">
+    <div class="Stefan">
+      <img src="assets/logos/Logo.png" alt="Logo" class="logo" />
+      <span>Von Stefan</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="restaurant">
+      <img id="header-pic" class="hero-img" src="./assets/header/restaurant.jpg" alt="Titelbild" />
+      <div class="restaurant-info">
+        <h1>Restaurant - "Krosse Krabbe Pizza"</h1>
+        <p class="bewertung">Bewertung (4,8 von 5 Sternen)</p>
+        <nav class="tabs">
+        </nav>
+      </div>
+    </section>
+
+    <section class="content">
+      <div id="menu">
+
+        <nav class="breadcrumbs" aria-label="Brotkrumen">
+          <a href="#top">Start</a>
+          <span class="crumb-sep">›</span>
+          <a href="#menu">Menü</a>
+          <span class="crumb-sep">›</span>
+          <a href="#Hauptgerichte" aria-current="page">Hauptgerichte</a>
+          <span class="crumb-sep">›</span>
+          <a href="#Getränke" aria-current="page">Getränke</a>
+        </nav>
+
+        <!-- hauptgerichte -->
+        <h2>Hauptgerichte</h2>
+        <img class="kategorie-bild" src="./assets/header/hauptgericht.jpg" alt="hauptgerichte">
+        <div id="Hauptgerichte"></div>
+
+       <!-- nachspeisen -->
+      <h2>Nachspeisen</h2>
+      <img class="kategorie-bild" src="./assets/header/nachspeise.jpg" alt="nachspeisen">
+      <div id="Nachspeisen"></div>
+
+      <!-- getränke -->
+      <h2>Getränke</h2>
+      <img class="kategorie-bild" src="./assets/header/drinks.jpg" alt="getränke">
+      <div id="Getränke"></div>
+
+      </div>
+
+      <aside id="cart">
+        <button class="cart-close" aria-label="Close cart">×</button>
+        <h2>Cart</h2>
+        <ul id="cart-items"></ul>
+        <div id="summary">
+          <p>Subtotal: <span id="subtotal">0,00 €</span></p>
+          <p>Shipping: <span>5,00 €</span></p>
+          <p><strong>Total: <span id="total">5,00 €</span></strong></p>
+      
+          <!-- order btn -->
+          <button id="order-btn" type="button">Order</button>
+        </div>
+      </aside>
+      
+      <!-- warenkorb button -->
+      <button id="cart-toggle" class="cart-fab" aria-controls="cart" aria-expanded="false">
+        Cart
+      </button>
+
+    </main>
+
+    <footer class="haupt-footer">
+      <p>(c) 2025 - Krosse Krabbe Pizza</p>
+    </footer>
+
+  <script src="scripts/script.js"></script>
+  <script src="scripts/updateCart.js"></script>
+</body>
+</html>

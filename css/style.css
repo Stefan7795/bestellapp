@@ -1,0 +1,362 @@
+:root {
+  --brand: #ff7a00;
+  --brand-dark: #e56c00;
+  --accent: #1e90ff;
+  --muted: #f1f1f1;
+  --muted-2: #f9f9f9;
+  --text: #111; 
+}
+/* Hover-Effekt für jede Speisen-Zeile */
+#Hauptgerichte > div:hover,
+#Nachspeisen > div:hover,
+#Getränke > div:hover,
+#Getraenke > div:hover {
+  background: #fff9f3; 
+  cursor: pointer;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #fff;
+  color: var(--text);
+}
+
+/* Standard: ende btn am desktop verstecken */
+.cart-close {
+  display: none;
+}
+
+/* Header oben */
+
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px;
+  background: var(--brand);
+  color: #fff;
+}
+
+.logo {
+  height: 40px;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Hero / Restaurant-Info */
+
+.restaurant {
+  position: relative;
+}
+
+.hero-img {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: cover;
+}
+
+.restaurant-info {
+  width: 90%;
+  max-width: 800px;
+  margin: -32px auto 0;
+  padding: 16px;
+  text-align: center;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.bewertung {
+  color: var(--brand);
+}
+
+/* tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+.tab {
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 5px;
+  background: var(--muted);
+  cursor: pointer;
+}
+.tab.active {
+  background: var(--brand);
+  color: #fff;
+}
+
+/* inhalt + Cart */
+
+.content {
+  display: flex;
+  gap: 32px;
+  padding: 16px;
+}
+
+#menu {
+  flex: 2;
+}
+
+/* Kategorie-Bilder */
+.kategorie-bild {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  margin: 8px 0 16px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* cart für (Desktop) */
+
+#cart {
+  flex: 1;
+  min-width: 250px;
+  align-self: flex-start;
+  position: sticky;
+  top: 16px;
+  padding: 16px;
+  background: var(--muted-2);
+  border-left: 2px solid #ddd;
+  height: fit-content;
+}
+
+#cart h2 {
+  margin: 0 0 12px;
+  padding: 12px;
+  text-align: center;
+  background: var(--brand);
+  color: #fff;
+  font-size: 20px;
+}
+
+/* alle btns */
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--brand);
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.qty-btn:hover {
+  background: var(--brand-dark);
+  border-color: var(--brand-dark);
+}
+
+.remove-btn {
+  border: 0;
+  background: none;
+  color: var(--brand);
+  cursor: pointer;
+}
+.remove-btn:hover {
+  color: red;
+}
+
+
+     /* cart-Liste */
+
+#cart ul {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+}
+#cart li {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  column-gap: 12px;
+  padding: 12px 6px;
+  border-bottom: 1px solid #f1f1f1;
+}
+#cart li:last-child {
+  border-bottom: none;
+}
+
+#cart .controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 100px;
+  justify-content: center;
+}
+#cart .controls .count {
+  min-width: 28px;
+  text-align: center;
+  font-weight: 600;
+}
+
+#cart .price {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Summen berechnungen */
+
+#summary {
+  border-top: 1px solid #ececec;
+  padding: 12px 16px 16px;
+}
+#summary p {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+  color: #555;
+}
+#summary p:last-child {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #000;
+}
+
+/* Footer */
+
+.haupt-footer {
+  margin-top: 32px;
+  padding: 16px;
+  text-align: center;
+  font-size: 14px;
+  background: var(--brand);
+  color: #fff;
+}
+
+/* Mobile (max 768px) */
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+  .restaurant-info {
+    margin-top: -24px;
+    padding: 16px 8px;
+  }
+  .tabs {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .logo-title {
+    font-size: 18px;
+  }
+  .hero-img {
+    max-height: 180px;
+  }
+
+  /* cart-Button unten */
+  .cart-fab {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    border: 0;
+    padding: 16px 20px;
+    font-size: 18px;
+    font-weight: 700;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  .cart-close {
+    display: inline-flex;
+    position: sticky;
+    top: 0;
+    margin: 12px 0 0 auto;
+    border: 0;
+    background: transparent;
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    color: #333;
+    z-index: 1;
+  }
+
+  /* Overlay */
+  #cart {
+    position: fixed;
+    inset: 0;
+    display: none;
+    padding: 0 16px 80px;
+    background: #fff;
+    border: none;
+    min-width: auto;
+    height: auto;
+    z-index: 1100;
+  }
+  #cart.open {
+    display: block;
+  }
+
+  body.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+  }
+}
+
+@media (max-width: 320px) {
+  .tab {
+    width: 100%;
+    text-align: center;
+  }
+  .logo {
+    height: 30px;
+  }
+}
+
+/* Order-Button im cart */
+#order-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  border: 0;
+  border-radius: 6px;
+  background: var(--brand);
+  color: #fff;
+  cursor: pointer;
+}
+
+#order-btn:hover { background: var(--brand-dark); }
+
+/* deaktiviert-btn butten wen cart leer ist */
+#order-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
