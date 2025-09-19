@@ -238,6 +238,6 @@ updateCart();
 const orderBtn = document.getElementById("order-btn");
 if (orderBtn) {
   orderBtn.addEventListener("click", function () {
-    alert("Order received! Thank you :)");
+    alert("Die Bestellung ist eingegangen ! Vielen Dank !");
   });
 }

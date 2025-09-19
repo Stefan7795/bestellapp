@@ -33,6 +33,10 @@ body {
   display: none;
 }
 
+.cart-fab {
+  display: none;
+}
+
 /* Header oben */
 
 .main-header {
@@ -292,6 +296,8 @@ body {
     cursor: pointer;
     z-index: 1000;
   }
+
+  
 
   .cart-close {
     display: inline-flex;
