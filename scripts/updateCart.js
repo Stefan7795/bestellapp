@@ -2,6 +2,21 @@ function formatPrice(price) {
   return price.toFixed(2).replace(".", ",") + " €";
 }
 
+function getCartItemHtml(item, i, postenPreis) {
+  return `
+    <li>
+      <span class="name">${item.name}</span>
+      <span class="controls">
+        <button class="cart-btn" onclick="decreaseQty(${i})">-</button>
+        <span class="count">${item.qty}x</span>
+        <button class="cart-btn" onclick="increaseQty(${i})">+</button>
+      </span>
+      <span class="price">${formatPrice(postenPreis)}</span>
+      <button class="cart-btn" onclick="removeItem(${i})">×</button>
+    </li>
+  `;
+}
+
 function updateCart() {
   const liste = document.getElementById("cart-items");
   if (!liste) return;
@@ -17,19 +32,7 @@ function updateCart() {
       const item = cart[i];
       const postenPreis = item.price * item.qty;
       summe += postenPreis;
-
-      liste.innerHTML += `
-        <li>
-          <span class="name">${item.name}</span>
-          <span class="controls">
-            <button class="cart-btn" onclick="decreaseQty(${i})">-</button>
-            <span class="count">${item.qty}x</span>
-            <button class="cart-btn" onclick="increaseQty(${i})">+</button>
-          </span>
-          <span class="price">${formatPrice(postenPreis)}</span>
-          <button class="cart-btn" onclick="removeItem(${i})">×</button>
-        </li>
-      `;
+      liste.innerHTML += getCartItemHtml(item, i, postenPreis);
     }
   }
 

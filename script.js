@@ -100,10 +100,37 @@ updateCart();
 
 // bestellen
 const orderBtn = document.getElementById("order-btn");
+const orderModal = document.getElementById("order-modal");
+const orderModalCloseBtn = document.getElementById("order-modal-close");
+
+function openOrderModal() {
+  if (!orderModal) return;
+  orderModal.classList.add("open");
+  orderModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("no-scroll");
+}
+
+function closeOrderModalAndClearCart() {
+  if (!orderModal) return;
+
+  orderModal.classList.remove("open");
+  orderModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("no-scroll");
+
+  cart.length = 0;
+  updateCart();
+  closeCart();
+}
+
 if (orderBtn) {
   orderBtn.addEventListener("click", function () {
-    alert("Die Bestellung ist eingegangen! Vielen Dank!");
+    if (cart.length === 0) return;
+    openOrderModal();
   });
+}
+
+if (orderModalCloseBtn) {
+  orderModalCloseBtn.addEventListener("click", closeOrderModalAndClearCart);
 }
 
 // mobile cart öffnen/schließen

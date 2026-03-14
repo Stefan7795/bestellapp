@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BestellApp</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="main-header">
@@ -81,7 +81,14 @@
       <p>(c) 2026 - Pizza Blitz</p>
     </footer>
 
+  <div id="order-modal" class="order-modal" aria-hidden="true">
+    <div class="order-modal-content" role="dialog" aria-modal="true" aria-labelledby="order-modal-title">
+      <p id="order-modal-title">Die Bestellung ist eingegangen! Vielen Dank!</p>
+      <button id="order-modal-close" type="button">Schließen</button>
+    </div>
+  </div>
+
   <script src="scripts/updateCart.js"></script>
-  <script src="scripts/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

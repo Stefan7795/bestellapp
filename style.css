@@ -335,9 +335,59 @@ body {
   color: #fff;
 }
 
+
+/* bei modal nicht scrollen möglich  */
+body.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+
+.order-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.order-modal.open {
+  display: flex;
+}
+
+.order-modal-content {
+  width: min(420px, 100%);
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.order-modal-content p {
+  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#order-modal-close {
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 16px;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#order-modal-close:hover {
+  background: var(--brand-dark);
+}
+
 /* Mobile (max 768px) */
 
-@media (max-width: 768px) {
+@media (max-width: 995px) {
   .content {
     flex-direction: column;
   }
@@ -418,10 +468,6 @@ body {
     display: block;
   }
 
-  body.no-scroll {
-    overflow: hidden;
-    height: 100vh;
-  }
 }
 
 @media (max-width: 320px) {
