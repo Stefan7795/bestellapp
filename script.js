@@ -15,42 +15,6 @@ const menu = [
 window.cart = JSON.parse(localStorage.getItem("cart") || "[]");
 const cart = window.cart;
 
-//  Menü anzeigen 
-function renderMenu() {
-  const kategorien = ["Hauptgerichte", "Nachspeisen", "Getränke"];
-
-  for (let k = 0; k < kategorien.length; k++) {
-    const kategorie = kategorien[k];
-    const bereich = document.getElementById(kategorie);
-    if (!bereich) continue;
-    bereich.innerHTML = "";
-
-    // menüeinträge filtern
-    const gefiltert = [];
-    for (let i = 0; i < menu.length; i++) {
-      if (menu[i].category === kategorie) {
-        gefiltert.push(menu[i]);
-      }
-    }
-
-    // einträge anzeigen
-    for (let j = 0; j < gefiltert.length; j++) {
-      const item = gefiltert[j];
-      const index = menu.indexOf(item);
-      const div = document.createElement("div");
-      div.className = "menu-item";
-      div.innerHTML = `
-        <div class="menu-item-info">
-          <strong>${item.name}</strong>
-          <span class="menu-item-price">${item.price.toFixed(2).replace(".", ",")} €</span>
-        </div>
-        <button class="add-btn" onclick="addToCart(${index})" aria-label="${item.name} hinzufügen">+</button>
-      `;
-      bereich.appendChild(div);
-    }
-  }
-}
-
 // artikel zum Warenkorb hinzufügen
 function addToCart(index) {
   const artikel = menu[index];
@@ -95,67 +59,17 @@ function removeItem(i) {
 }
 
 // Start der funktionen
-renderMenu();
+renderMenu(menu);
 updateCart();
+const mobileCart = setupMobileCart();
 
-// bestellen
-const orderBtn = document.getElementById("order-btn");
-const orderModal = document.getElementById("order-modal");
-const orderModalCloseBtn = document.getElementById("order-modal-close");
-
-function openOrderModal() {
-  if (!orderModal) return;
-  orderModal.classList.add("open");
-  orderModal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("no-scroll");
-}
-
-function closeOrderModalAndClearCart() {
-  if (!orderModal) return;
-
-  orderModal.classList.remove("open");
-  orderModal.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("no-scroll");
-
-  cart.length = 0;
-  updateCart();
-  closeCart();
-}
-
-if (orderBtn) {
-  orderBtn.addEventListener("click", function () {
-    if (cart.length === 0) return;
-    openOrderModal();
-  });
-}
-
-if (orderModalCloseBtn) {
-  orderModalCloseBtn.addEventListener("click", closeOrderModalAndClearCart);
-}
-
-// mobile cart öffnen/schließen
-const cartEl = document.getElementById("cart");
-const cartToggleBtn = document.getElementById("cart-toggle");
-const cartCloseBtn = document.querySelector(".cart-close");
-
-function openCart() {
-  if (!cartEl || !cartToggleBtn) return;
-  cartEl.classList.add("open");
-  document.body.classList.add("no-scroll");
-  cartToggleBtn.setAttribute("aria-expanded", "true");
-}
-
-function closeCart() {
-  if (!cartEl || !cartToggleBtn) return;
-  cartEl.classList.remove("open");
-  document.body.classList.remove("no-scroll");
-  cartToggleBtn.setAttribute("aria-expanded", "false");
-}
-
-if (cartToggleBtn) {
-  cartToggleBtn.addEventListener("click", openCart);
-}
-
-if (cartCloseBtn) {
-  cartCloseBtn.addEventListener("click", closeCart);
-}
+setupOrderModal({
+  canOpen: function () {
+    return cart.length > 0;
+  },
+  onConfirm: function () {
+    cart.length = 0;
+    updateCart();
+    mobileCart.closeCart();
+  },
+});
