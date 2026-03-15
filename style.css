@@ -6,7 +6,7 @@
   --muted-2: #f9f9f9;
   --text: #111;
 }
-/* Hover-Effekt für jede speisenzeile */
+
 #Hauptgerichte > .menu-item:hover,
 #Nachspeisen > .menu-item:hover,
 #Getränke > .menu-item:hover,
@@ -15,7 +15,6 @@
   cursor: pointer;
 }
 
-/* Menüeinträge */
 .menu-item {
   display: flex;
   align-items: center;
@@ -65,12 +64,13 @@ html {
 }
 body {
   margin: 0;
+  max-width: 1920px;
+  margin-inline: auto;
   font-family: sans-serif;
   background: #fff;
   color: var(--text);
 }
 
-/* ende btn am desktop verstecken */
 .cart-close {
   display: none;
 }
@@ -78,8 +78,6 @@ body {
 .cart-fab {
   display: none;
 }
-
-/* header oben */
 
 .main-header {
   display: flex;
@@ -107,8 +105,6 @@ body {
   font-size: 24px;
   cursor: pointer;
 }
-
-/* restaurant-Info */
 
 .restaurant {
   position: relative;
@@ -146,7 +142,6 @@ body {
   color: var(--brand);
 }
 
-/* tabs */
 .tabs {
   display: flex;
   justify-content: center;
@@ -164,8 +159,6 @@ body {
   background: var(--brand);
   color: #fff;
 }
-
-/* inhalt + Cart */
 
 .content {
   display: flex;
@@ -190,7 +183,6 @@ body {
   color: var(--text);
 }
 
-/* Kategorie für Bilder */
 .kategorie-bild {
   width: 100%;
   height: auto;
@@ -200,8 +192,6 @@ body {
   object-fit: cover;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
-
-/* cart für Desktop */
 
 #cart {
   flex: 1;
@@ -223,8 +213,6 @@ body {
   color: #fff;
   font-size: 20px;
 }
-
-/* alle btns */
 
 .qty-btn {
   width: 28px;
@@ -251,8 +239,6 @@ body {
   color: red;
 }
 
-/* cart-Liste */
-
 #cart ul {
   list-style: none;
   margin: 0;
@@ -260,7 +246,7 @@ body {
 }
 #cart li {
   display: grid;
-  grid-template-columns: 1fr auto auto auto;
+  grid-template-columns: minmax(0, 1fr) 108px 88px 32px;
   align-items: center;
   column-gap: 12px;
   padding: 12px 6px;
@@ -274,8 +260,8 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  min-width: 100px;
-  justify-content: center;
+  width: 108px;
+  justify-content: space-between;
 }
 #cart .controls .count {
   min-width: 28px;
@@ -303,9 +289,12 @@ body {
 #cart .price {
   font-weight: 600;
   white-space: nowrap;
+  text-align: right;
 }
 
-/* Summen berechnungen */
+#cart li > .cart-btn {
+  justify-self: end;
+}
 
 #summary {
   border-top: 1px solid #ececec;
@@ -324,8 +313,6 @@ body {
   color: #000;
 }
 
-/* footer */
-
 .haupt-footer {
   margin-top: 32px;
   padding: 16px;
@@ -335,13 +322,9 @@ body {
   color: #fff;
 }
 
-
-/* bei modal nicht scrollen möglich  */
 body.no-scroll {
   overflow: hidden;
-  height: 100vh;
 }
-
 
 .order-modal {
   display: none;
@@ -385,8 +368,6 @@ body.no-scroll {
   background: var(--brand-dark);
 }
 
-/* Mobile (max 768px) */
-
 @media (max-width: 995px) {
   .content {
     flex-direction: column;
@@ -420,7 +401,6 @@ body.no-scroll {
     top: 45%;
   }
 
-  /* cart-Button unten */
   .cart-fab {
     display: block;
     position: fixed;
@@ -452,7 +432,6 @@ body.no-scroll {
     z-index: 1;
   }
 
-  /* Overlay */
   #cart {
     position: fixed;
     inset: 0;
@@ -461,7 +440,9 @@ body.no-scroll {
     background: #fff;
     border: none;
     min-width: auto;
-    height: auto;
+    height: 100dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     z-index: 1100;
   }
   #cart.open {
@@ -480,7 +461,6 @@ body.no-scroll {
   }
 }
 
-/* Order-Button im cart */
 #order-btn {
   width: 100%;
   margin-top: 12px;
@@ -498,7 +478,6 @@ body.no-scroll {
   background: var(--brand-dark);
 }
 
-/* deaktiviert-btn butten wen cart leer ist */
 #order-btn:disabled {
   opacity: 0.55;
   cursor: not-allowed;

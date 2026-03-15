@@ -1,4 +1,3 @@
-// Daten im array:
 const menu = [
   { name: "Pizza Krabben", price: 9.5, category: "Hauptgerichte" },
   { name: "Krabbenburger", price: 5.9, category: "Hauptgerichte" },
@@ -11,24 +10,22 @@ const menu = [
   { name: "Tee mit Quallenstücke (Bubble-Tea) (0,5l)", price: 2.0, category: "Getränke" },
 ];
 
-//  holt werte auf local storage 
 window.cart = JSON.parse(localStorage.getItem("cart") || "[]");
 const cart = window.cart;
 
-// artikel zum Warenkorb hinzufügen
 function addToCart(index) {
   const artikel = menu[index];
-  let gefunden = null;
+  let existingItem = null;
 
   for (let i = 0; i < cart.length; i++) {
     if (cart[i].name === artikel.name) {
-      gefunden = cart[i];
+      existingItem = cart[i];
       break;
     }
   }
 
-  if (gefunden) {
-    gefunden.qty++;
+  if (existingItem) {
+    existingItem.qty++;
   } else {
     cart.push({ ...artikel, qty: 1 });
   }
@@ -36,13 +33,11 @@ function addToCart(index) {
   updateCart();
 }
 
-// menge erhöhen 
 function increaseQty(i) {
   cart[i].qty++;
   updateCart();
 }
 
-// menge verringern 
 function decreaseQty(i) {
   if (cart[i].qty > 1) {
     cart[i].qty--;
@@ -52,13 +47,11 @@ function decreaseQty(i) {
   updateCart();
 }
 
-//  Artikel entfernen 
 function removeItem(i) {
   cart.splice(i, 1);
   updateCart();
 }
 
-// Start der funktionen
 renderMenu(menu);
 updateCart();
 const mobileCart = setupMobileCart();
