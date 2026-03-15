@@ -1,20 +1,4 @@
-const subtotalEl = document.getElementById("subtotal");
-  if (subtotalEl) subtotalEl.textContent = formatPrice(summe);
-
-  const shipping = 5;
-
-  const shippingSpan = document.querySelector("#summary p:nth-child(2) span");
-  if (shippingSpan) shippingSpan.textContent = formatPrice(shipping);
-
-  const totalEl = document.getElementById("total");
-  if (totalEl) totalEl.textContent = formatPrice(summe + shipping);
-
-  const btn = document.getElementById("order-btn");
-  if (btn) btn.disabled = cart.length === 0;
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-  
-  function formatPrice(price) {
+function formatPrice(price) {
   return price.toFixed(2).replace(".", ",") + " €";
 }
 
@@ -52,5 +36,19 @@ function updateCart() {
     }
   }
 
-  
+  const subtotalEl = document.getElementById("subtotal");
+  if (subtotalEl) subtotalEl.textContent = formatPrice(summe);
+
+  const shipping = 5;
+
+  const shippingSpan = document.querySelector("#summary p:nth-child(2) span");
+  if (shippingSpan) shippingSpan.textContent = formatPrice(shipping);
+
+  const totalEl = document.getElementById("total");
+  if (totalEl) totalEl.textContent = formatPrice(summe + shipping);
+
+  const btn = document.getElementById("order-btn");
+  if (btn) btn.disabled = cart.length === 0;
+
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
