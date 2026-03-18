@@ -24,6 +24,7 @@ function updateCart() {
 
   const cart = window.cart || [];
   let summe = 0;
+  let totalCount = 0;
 
   if (cart.length === 0) {
     liste.innerHTML = "<li>Your cart is empty.</li>";
@@ -32,6 +33,7 @@ function updateCart() {
       const item = cart[i];
       const itemTotalPrice = item.price * item.qty;
       summe += itemTotalPrice;
+      totalCount += item.qty;
       liste.innerHTML += getCartItemHtml(item, i, itemTotalPrice);
     }
   }
@@ -49,6 +51,17 @@ function updateCart() {
 
   const btn = document.getElementById("order-btn");
   if (btn) btn.disabled = cart.length === 0;
+
+  const cartCountBadge = document.getElementById("cart-count-badge");
+  if (cartCountBadge) {
+    if (totalCount > 0) {
+      cartCountBadge.textContent = String(totalCount);
+      cartCountBadge.classList.remove("is-hidden");
+    } else {
+      cartCountBadge.textContent = "";
+      cartCountBadge.classList.add("is-hidden");
+    }
+  }
 
   localStorage.setItem("cart", JSON.stringify(cart));
 }
